@@ -24,7 +24,7 @@ RUN CACHED_YARN=./artifacts/yarn-${YARN_VERSION}.tar.gz; \
     if [ -f ${CACHED_YARN} ]; then \
       npm install ${CACHED_YARN}; \
     else \
-      npm install https://github.com/yarnpkg/yarn/releases/download/${YARN_VERSION}/yarn-${YARN_VERSION}.tar.gz; \
+      echo "yarn not found"; exit 1;
     fi
 
 # The REMOTE_SOURCES value is set by the build system to indicate the location of the cachito-backed artifacts cache.
