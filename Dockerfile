@@ -31,13 +31,14 @@ RUN CACHED_YARN=./artifacts/yarn-${YARN_VERSION}.tar.gz; \
 # As cachito might not be available in all environments, we need to make sure the value is set before trying to use it and
 # that the COPY layer below doesn't fail. Setting it to be the Dockerfile itself is fairly safe, as it will always be
 # available.
-ARG REMOTE_SOURCES=./Dockerfile.product
-ARG REMOTE_SOURCE_DIR=/tmp/remote-sources
 
-COPY $REMOTE_SOURCES $REMOTE_SOURCES_DIR
+# ARG REMOTE_SOURCES=./Dockerfile.product
+# ARG REMOTE_SOURCE_DIR=/tmp/remote-sources
+
+# COPY $REMOTE_SOURCES $REMOTE_SOURCES_DIR
 
 # use dependencies provided by Cachito
-RUN test -d ${REMOTE_SOURCES}/cachito-gomod-with-deps || exit 0; \
+# RUN test -d ${REMOTE_SOURCES}/cachito-gomod-with-deps || exit 0; \
     cp -f $REMOTE_SOURCES_DIR/cachito-gomod-with-deps/app/registry-ca.pem . \
  && cp -f $REMOTE_SOURCES_DIR/cachito-gomod-with-deps/app/frontend/{.npmrc,.yarnrc,yarn.lock} frontend/
 
